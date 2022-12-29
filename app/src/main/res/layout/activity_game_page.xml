@@ -6,4 +6,212 @@
     android:layout_height="match_parent"
     tools:context=".GamePage">
 
+        <TextView
+            android:id="@+id/gameScoreDynamic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:text="0"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/gameScoreStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="16dp"
+            android:text=" of 6 matches"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/timerDynamic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="16dp"
+            android:text="00:00:00"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+        </TextView>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameScoreDynamic"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gameScoreDynamic"
+            android:orientation="horizontal">
+            
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gameScoreDynamic"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gameScoreDynamic"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gameScoreDynamic"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/image12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/recx"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:layout_weight="1">
+            </ImageView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
