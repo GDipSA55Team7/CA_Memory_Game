@@ -3,9 +3,12 @@ package iss.workshop.ca_memorygame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +20,14 @@ public class GamePage extends AppCompatActivity implements View.OnClickListener 
     ArrayList<Integer> assignedPositions = new ArrayList<>();
     HashMap<Integer, Integer> gameAnswer = new HashMap<>();
     HashMap<Integer, Integer> imageToDisplay = new HashMap<>();
+    ArrayList<String> testImageURLs = new ArrayList<String>(){{
+        add("https://cdn.stocksnap.io/img-thumbs/280h/tree-desert_JMTQNOJWU8.jpg");
+        add("https://cdn.stocksnap.io/img-thumbs/280h/lily-pad_A6ZEIQ32GJ.jpg");
+        add("https://cdn.stocksnap.io/img-thumbs/280h/woman-portrait_XOXDWWH2PE.jpg");
+        add("https://cdn.stocksnap.io/img-thumbs/280h/flower-garden_3JEBUQCKBH.jpg");
+        add("https://cdn.stocksnap.io/img-thumbs/280h/father-child_PYULJR0I6W.jpg");
+        add("https://cdn.stocksnap.io/img-thumbs/280h/cardinal-bird_6LHN3IBD9W.jpg");
+    }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,9 @@ public class GamePage extends AppCompatActivity implements View.OnClickListener 
         ImageView img1 = findViewById(R.id.image1);
         img1.setOnClickListener(this);
         gridIDs.add(img1.getId());
+        Glide.with(this)
+                .load("https://cdn.stocksnap.io/img-thumbs/280h/tree-desert_JMTQNOJWU8.jpg")
+                .override(50,50).into(img1);
 
         ImageView img2 = findViewById(R.id.image2);
         img2.setOnClickListener(this);
@@ -111,5 +125,6 @@ public class GamePage extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v){
         int id = v.getId();
         System.out.println(id);
+
     }
 }
