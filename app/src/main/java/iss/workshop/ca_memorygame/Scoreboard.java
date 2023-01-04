@@ -2,7 +2,6 @@ package iss.workshop.ca_memorygame;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -46,20 +45,5 @@ public class Scoreboard extends AppCompatActivity {
         top3_scoreView.setText(top3_score.isEmpty() ? placeholder : top3_score);
         top4_scoreView.setText(top4_score.isEmpty() ? placeholder : top4_score);
         top5_scoreView.setText(top5_score.isEmpty() ? placeholder : top5_score);
-    }
-    @Override
-    protected void onPause() {
-        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
-        bgMusicIntent.setAction("pause");
-        startService(bgMusicIntent);
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume(){
-        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
-        bgMusicIntent.setAction("play");
-        startService(bgMusicIntent);
-        super.onResume();
     }
 }
