@@ -79,7 +79,7 @@ public class ImageFetchingActivity extends AppCompatActivity {
     private void initializeGridView() {
         loadDefaultImage();
         GridView gridView = findViewById(R.id.gvImages);
-        adapter = new MainActivity.GridImageAdapter(this, this.imageFetchingService.imageContents);
+        adapter = new GridImageAdapter(this, this.imageFetchingService.imageContents);
         listener = new ImageSelectListener(this, mode);
 
         gridView.setAdapter(adapter);
@@ -164,7 +164,7 @@ public class ImageFetchingActivity extends AppCompatActivity {
     }
 
     public void updateGridView() {
-        MainActivity.GridImageAdapter fetchedImageAdapter = new MainActivity.GridImageAdapter(this, this.imageFetchingService.imageContents);
+        GridImageAdapter fetchedImageAdapter = new GridImageAdapter(this, this.imageFetchingService.imageContents);
         GridView imageGridView = findViewById(R.id.gvImages);
         if (imageGridView != null) {
             imageGridView.setAdapter(fetchedImageAdapter);
