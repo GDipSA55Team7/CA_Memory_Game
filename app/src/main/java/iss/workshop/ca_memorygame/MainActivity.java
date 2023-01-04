@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bgMusicIntent = new Intent(MainActivity.this, ImageFetchingActivity.BgMusicService.class);
+        bgMusicIntent = new Intent(MainActivity.this, BgMusicService.class);
         bgMusicIntent.setAction("play");
         startService(bgMusicIntent);
     }
@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void bgSoundHandler(View view) {
         ImageView soundIcon = findViewById(R.id.bgSoundIcon);
-        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
-        if (ImageFetchingActivity.BgMusicService.onBGMusic.equals("on")) {
-            ImageFetchingActivity.BgMusicService.onBGMusic = "off";
+        Intent bgMusicIntent = new Intent(this, BgMusicService.class);
+        if (BgMusicService.onBGMusic.equals("on")) {
+            BgMusicService.onBGMusic = "off";
             soundIcon.setImageResource(R.drawable.music_off);
         } else {
-            ImageFetchingActivity.BgMusicService.onBGMusic = "on";
+            BgMusicService.onBGMusic = "on";
             soundIcon.setImageResource(R.drawable.music_on);
         }
         bgMusicIntent.setAction("play");
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
+        Intent bgMusicIntent = new Intent(this, BgMusicService.class);
         bgMusicIntent.setAction("pause");
         startService(bgMusicIntent);
         super.onPause();
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume(){
-        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
+        Intent bgMusicIntent = new Intent(this, BgMusicService.class);
         bgMusicIntent.setAction("play");
         startService(bgMusicIntent);
         super.onResume();
