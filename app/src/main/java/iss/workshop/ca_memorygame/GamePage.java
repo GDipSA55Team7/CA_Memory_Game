@@ -43,8 +43,6 @@ public class GamePage extends AppCompatActivity {
     Handler customHandler = new Handler();
     long startTime = 0L, timeInMilliSeconds = 0L, timeSwapBuff = 0L, updateTime = 0L;
 
-    private int numOfElements;
-
     private int clicked = 0;
     int lastClicked = -1;
 
@@ -74,6 +72,9 @@ public class GamePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_page);
+        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
+        bgMusicIntent.setAction("gaming");
+        startService(bgMusicIntent);
 
         dialog = new Dialog(this);
 
@@ -246,5 +247,20 @@ public class GamePage extends AppCompatActivity {
         intent.putExtra("mode", "sp");
         startActivity(intent);
         finish();
+    }
+    @Override
+    protected void onPause() {
+        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
+        bgMusicIntent.setAction("pause");
+        startService(bgMusicIntent);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume(){
+        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
+        bgMusicIntent.setAction("gaming");
+        startService(bgMusicIntent);
+        super.onResume();
     }
 }
