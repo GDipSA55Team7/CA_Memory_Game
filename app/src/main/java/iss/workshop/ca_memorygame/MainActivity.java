@@ -81,4 +81,53 @@ public class MainActivity extends AppCompatActivity {
         startService(bgMusicIntent);
         super.onResume();
     }
+
+    public static class GridImageAdapter extends BaseAdapter {
+
+        private final LayoutInflater inflater;
+
+        public GridImageAdapter(Context context, ArrayList<Bitmap> fetchedImages) {
+            this.fetchedImages = fetchedImages;
+            this.inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        }
+
+        private final ArrayList<Bitmap> fetchedImages;
+
+        @Override
+        public int getCount() {
+            return 20;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            if(convertView == null){
+                convertView = inflater.inflate(R.layout.gridview_item, parent, false);
+            }
+
+            ImageView imageView = convertView.findViewById(R.id.gridImage);
+
+            Glide.with(imageView.getContext())
+                    .load(fetchedImages.get(position))
+                    .transform(new MultiTransformation(new CenterCrop(), new RoundedCorners(35)))
+                    .into(imageView);
+
+            return convertView;
+        }
+
+        private Bitmap convertBitMap(File file)
+        {
+            return BitmapFactory.decodeFile(file.getAbsolutePath());
+        }
+    }
 }
