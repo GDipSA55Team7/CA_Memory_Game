@@ -69,7 +69,7 @@ public class GameMulti extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_page);
-        Intent bgMusicIntent = new Intent(this, BgMusicService.class);
+        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
         bgMusicIntent.setAction("gaming");
         startService(bgMusicIntent);
 
@@ -225,7 +225,7 @@ public class GameMulti extends AppCompatActivity {
     }
     @Override
     protected void onPause() {
-        Intent bgMusicIntent = new Intent(this, BgMusicService.class);
+        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
         bgMusicIntent.setAction("pause");
         startService(bgMusicIntent);
         super.onPause();
@@ -233,7 +233,7 @@ public class GameMulti extends AppCompatActivity {
 
     @Override
     protected void onResume(){
-        Intent bgMusicIntent = new Intent(this, BgMusicService.class);
+        Intent bgMusicIntent = new Intent(this, ImageFetchingActivity.BgMusicService.class);
         bgMusicIntent.setAction("gaming");
         startService(bgMusicIntent);
         super.onResume();

@@ -186,4 +186,127 @@ public class ImageFetchingActivity extends AppCompatActivity {
         startService(bgMusicIntent);
         super.onResume();
     }
+
+    public static class BgMusicService extends Service {
+
+        MediaPlayer mMediaPlayer;
+        public static String onBGMusic = "off";
+
+        public BgMusicService() {
+
+        }
+
+        @Override
+        public int onStartCommand(Intent intent, int flags, int startId) {
+            if (mMediaPlayer == null) {
+                mMediaPlayer = MediaPlayer.create(this, R.raw.bg_pixabay);
+                mMediaPlayer.setLooping(true);
+            }
+            String action = intent.getAction();
+            if (action != null && onBGMusic.equals("on")) {
+                if (action.equals("play")) {
+                    mMediaPlayer.setVolume(1f, 1f);
+                    mMediaPlayer.start();
+                } else if (action.equals("gaming")) {
+                        mMediaPlayer.setVolume(0.5f, 0.5f);
+                        mMediaPlayer.start();
+                } else if (action.equals("pause")) {
+                    mMediaPlayer.pause();
+                }
+            } else if (action != null && onBGMusic.equals("off")) {
+                mMediaPlayer.stop();
+                mMediaPlayer.release();
+                mMediaPlayer = null;
+            }
+            return START_STICKY;
+        }
+
+        @Override
+        public IBinder onBind(Intent intent) {
+            // TODO: Return the communication channel to the service.
+            throw new UnsupportedOperationException("Not yet implemented");
+        }
+
+        @Override
+        public void onDestroy(){
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
+    }
+
+    public static class ImageFetchingService {
+
+        public ArrayList<String> imgUrlList = new ArrayList<>();
+        public ArrayList<Bitmap> imageContents = new ArrayList<>();
+        public ArrayList<File> imageFiles = new ArrayList<>();
+
+        public String prepareImageUrls(String url){
+            if(url == null || url == ""){
+                return "Invalid Url";
+            }
+            try {
+                imgUrlList = new ArrayList<>();
+                Document doc = Jsoup.connect(url).get();
+                Elements links = doc.select("img[src]");
+                for (Element link : links) {
+                    if (link.attr("src").contains(".jpg") && link.attr("src").contains("https://")
+                            && !link.attr("src").contains("?")) {
+                        imgUrlList.add(link.attr("src"));
+                        if (imgUrlList.size() == 20)
+                            break;
+                    }
+
+                    if (link.attr("data-src").contains(".jpg") && link.attr("data-src").contains("https://")
+                            && !link.attr("data-src").contains("?")) {
+                        imgUrlList.add(link.attr("data-src"));
+                        if (imgUrlList.size() == 20)
+                            break;
+                    }
+                }
+
+                if(imgUrlList.size() < 20)
+                {
+                    return "Insufficient Images";
+                }
+
+
+                return "success";
+            }
+            catch (IOException e)
+            {
+                return "fail";
+            }
+            catch (Exception e)
+            {
+                String message = e.getMessage();
+                return e.getMessage();
+            }
+        }
+
+        public boolean downloadImage(String url,File targetFile)
+        {
+            try {
+                URL myURL = new URL(url);
+                URLConnection conn = myURL.openConnection();
+
+                InputStream in = conn.getInputStream();
+                FileOutputStream out = new FileOutputStream(targetFile);
+                byte[] buffer = new byte[1024];
+                int bytesRead = -1;
+                while ((bytesRead = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, bytesRead);
+                }
+
+                out.close();
+                in.close();
+                imageFiles.add(targetFile);
+                imageContents.add(BitmapFactory.decodeFile(targetFile.getAbsolutePath()));
+                return true;
+
+            } catch (Exception e) {
+                return false;
+            }
+        }
+    }
 }
